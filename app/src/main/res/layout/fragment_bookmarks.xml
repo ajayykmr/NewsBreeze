@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.BookmarksFragment"
+    android:padding="20dp"
+    android:background="@color/bg_color"
+    >
+
+    <TextView
+        android:id="@+id/tv_saved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/source_sans3_semibold"
+        android:text="Saved"
+        android:textColor="@color/green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="40sp"
+
+        />
+
+    <ImageView
+        android:id="@+id/iv_bm_back_button"
+        android:layout_width="15dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_back_button_black"
+        app:layout_constraintTop_toTopOf="@id/tv_saved"
+        app:layout_constraintBottom_toBottomOf="@id/tv_saved"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <EditText
+        android:background="@drawable/rounded_corner_no_bg"
+        android:drawableLeft="@drawable/ic_search_icon"
+        android:padding="15dp"
+        android:drawablePadding="15dp"
+        android:hint="Search"
+        android:textColorHint="#C1C0BF"
+        android:textColor="@color/text_color_1"
+        android:id="@+id/et_search_bookmarks"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_saved"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        app:layout_goneMarginTop="10dp"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="10dp"
+
+        app:layout_constraintTop_toBottomOf="@id/et_search_bookmarks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
