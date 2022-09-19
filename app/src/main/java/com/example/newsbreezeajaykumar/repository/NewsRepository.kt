@@ -10,11 +10,11 @@ import com.example.newsbreezeajaykumar.util.Resource
 import retrofit2.Retrofit
 
 class NewsRepository(val database: ArticleDatabase): ViewModel() {
-    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
-        RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
+    suspend fun getBreakingNews(countryCode: String) =
+        RetrofitInstance.api.getBreakingNews(countryCode)
 
-    suspend fun searchNews(searchQuery: String, pageNumber: Int) =
-        RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+    suspend fun searchNews(searchQuery: String) =
+        RetrofitInstance.api.searchForNews(searchQuery)
 
     suspend fun upsert(article: Article) = database.getArticleDao().upsert(article)
 

@@ -11,10 +11,10 @@ interface NewsApiInterface {
     suspend fun getBreakingNews(
         @Query("country")
         countryCode: String = "in",
-
+/*
         @Query("page")
         pageNumber: Int = 1,
-
+*/
         @Query("apiKey")
         apiKey: String = API_KEY
     ): Response<ApiRespone>
@@ -23,10 +23,10 @@ interface NewsApiInterface {
     suspend fun searchForNews(
         @Query("q")
         searchQuery: String,
-
+/*
         @Query("page")
         pageNumber: Int = 1,
-
+*/
         @Query("apiKey")
         apiKey: String = API_KEY
     ): Response<ApiRespone>

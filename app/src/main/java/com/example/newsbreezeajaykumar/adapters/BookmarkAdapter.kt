@@ -17,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.newsbreezeajaykumar.R
 import com.example.newsbreezeajaykumar.models.Article
 import com.example.newsbreezeajaykumar.ui.MyViewModel
+import kotlinx.coroutines.Job
 
 class BookmarkAdapter(var savedArticleList: List<Article>, var viewModel: MyViewModel, var navController: NavController): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
 
@@ -49,6 +50,10 @@ class BookmarkAdapter(var savedArticleList: List<Article>, var viewModel: MyView
             navController.navigate(R.id.action_bookmarksFragment_to_articleDetailsFragment, bundle)
         }
 
+        holder.itemView.setOnLongClickListener { _-> Boolean
+            viewModel.deleteArticle(article)
+            true
+        }
     }
 
     override fun getItemCount(): Int {

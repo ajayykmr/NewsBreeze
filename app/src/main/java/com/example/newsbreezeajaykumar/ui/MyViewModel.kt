@@ -26,10 +26,10 @@ class MyViewModel (app: Application, val newsRepository: NewsRepository): Androi
     var fromHomeScren: Boolean = true
 
     val breakingNews: MutableLiveData<Resource<ApiRespone>> = MutableLiveData()
-    var breakingNewsPage = 1
+
 
     val searchNews: MutableLiveData<Resource<ApiRespone>> = MutableLiveData()
-    var searchNewsPage = 1
+
 
     init {
         getBreakingNews("in")
@@ -74,7 +74,7 @@ class MyViewModel (app: Application, val newsRepository: NewsRepository): Androi
         breakingNews.postValue(Resource.Loading())
         try {
             if(hasInternetConnection()){
-                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
+                val response = newsRepository.getBreakingNews(countryCode)
                 breakingNews.postValue(handleSearchNewsResponse(response))
             }else{
                 breakingNews.postValue(Resource.Error("No Internet Connection"))
@@ -92,7 +92,7 @@ class MyViewModel (app: Application, val newsRepository: NewsRepository): Androi
         searchNews.postValue(Resource.Loading())
         try {
             if(hasInternetConnection()){
-                val response = newsRepository.searchNews(searchQuery, searchNewsPage)
+                val response = newsRepository.searchNews(searchQuery)
                 searchNews.postValue(handleBreakingNewsResponse(response))
             }else{
                 searchNews.postValue(Resource.Error("No Internet Connection"))
@@ -110,7 +110,6 @@ class MyViewModel (app: Application, val newsRepository: NewsRepository): Androi
     private fun hasInternetConnection(): Boolean{
         val connectivityManager = getApplication<NewsApplication>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {*/
             val activeNetwork = connectivityManager.activeNetwork ?: return false
             val capabalities =
                 connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
@@ -120,16 +119,6 @@ class MyViewModel (app: Application, val newsRepository: NewsRepository): Androi
                 capabalities.hasTransport(TRANSPORT_ETHERNET) -> true
                 else -> false
             }
-        /*else{
-                connectivityManager.activeNetworkInfo?.run{
-                    return when(type){
-                        TYPE_WIFI -> true
-                        TYPE_MOBILE -> true
-                        TYPE_ETHERNET -> true
-                        else -> false
-                    }
-                }
-        }*/
 
     }
 }
